@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="container">
+   <h1 class="text-center">Write News......</h1>
+   <h6>All inputs are required *</h6>
+   <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <span>Title:</span>
+      {{form.title}}
+      
+    
+            <span>Author:</span>
+            {{form.author}}
+        
+      <div class="m-2">
+      <h6>abstract:</h6>
+      {{ form.abstract }}
+      </div>
+
+      <span>Choose Your E-Book</span>
+      {{form.E_Book}}
+      
+      
+      <h5><span>Add Book Cover</span></h5>
+      <div class="border-bottom border-start border-dark border-end p-2 mb-3">
+         <div class="image-input">
+            {{ form.book_cover }}
+            <img src="https://s3.amazonaws.com/37assets/svn/1667-jz-avatar-blue.png" class="image-preview">
+            <label for="id_book_cover" style="font-size: large;" class="btn btn-outline-dark rounded-pill  text-center image-button"><i class="fa fa-upload"></i>Upload File</label>
+            <span style=" font-size: large; width: 50%;" class="btn btn-outline-dark rounded-pill change-image"><i class="fa fa-recycle"></i>Different file?</span>
+         </div>
+      </div>
+
+      <button type="submit" class="rounded-button login-cta text-center"> Post Book </button>
+   </form>
+</div>
+
+{% else %}
+you are not supposed to be here
+<a href="{% url 'login' %}">Login</a> OR
+<a href="{% url 'signup' %}">Sign Up</a>
+
+{% endif %}
+
+<style>
+
+
+   :root {
+      --bodybg: #dcdefe;
+      --primary-color: #5138ee;
+      --grey: #d6d6d6;
+      --placeholder: #969696;
+      --white: #fff;
+      --text: #333;
+      --slider-bg: #eff3ff;
+      --login-cta-hover: #333;
+   }
+
+
+
+
+
+
+
+   .image-input {
+      display: flex;
+  align-items: center;
+  justify-content: center;
+   }
+
+   .image-input input {
+      display: none;
+   }
+
+   .image-input label {
+      display: block;
+      padding: .3rem .6rem;
+      font-size: 115%;
+      cursor: pointer;
+      width: 50%;
+   }
+
+   .image-input label i {
+      font-size: 125%;
+      margin-right: .3rem;
+   }
+
+   .image-input label:hover i {
+      animation: shake .35s;
+   }
+
+   .image-input img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 180px;
+      height: 180px;
+   }
+
+   .image-input span {
+      display: none;
+      text-align: center;
+      cursor: pointer;
+   }
+
+   @keyframes shake {
+      0% {
+         transform: rotate(0deg);
+      }
+
+      25% {
+         transform: rotate(10deg);
+      }
+
+      50% {
+         transform: rotate(0deg);
+      }
+
+      75% {
+         transform: rotate(-10deg);
+      }
+
+      100% {
+         transform: rotate(0deg);
+      }
+   }
+
+   .image-input a{
+      display: none;
+      visibility: hidden;
+   }
+   .image-input{
+      font-size: 0px;
+   }
+
+   
+
+   .profile_pic {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+   }
+
+   .login-cta {
+      color: var(--white);
+      text-decoration: none;
+      border: 1px solid var(--login-cta-hover);
+      margin: 25px 0 35px;
+      background: var(--login-cta-hover);
+   }
+
+   .login-cta:hover {
+      background: var(--login-cta-hover);
+   }
+
+   .rounded-button {
+      display: flex;
+      width: 60%;
+      margin-left: 15%;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 13px 20px;
+      box-sizing: border-box;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      align-items: center;
+      transition: linear 0.2s;
+   }
+
+   .rounded-button:hover {
+      box-shadow: 0px 0px 4px 0px var(--grey);
+   }
+
+   h5 {
+      width: 100%;
+      text-align: left;
+      border-bottom: 1px solid #000;
+      line-height: 0.1em;
+      margin: 10px 0 0px;
+   }
+
+   h5 span {
+      background: #fff;
+      padding: 0 10px;
+   }
+
+   @media only screen and (min-width: 799px) {
+      .container {
+         width: 50rem;
+      }
+   }
+
+   @media only screen and (max-width: 500px) {
+      .container {
+         width: 100%;
+      }
+   }
+
+   .container input:focus {
+      outline: none;
+      border: 1px solid var(--primary-color);
+   }
+
+   .container input {
+      padding: 13px 20px;
+      box-sizing: border-box;
+      border: 1px solid var(--grey);
+      border-radius: 50px;
+      font-family: sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text);
+      transition: linear 0.2s;
+      width: 100%;
+   }
+   .container select {
+      padding: 13px 20px;
+      box-sizing: border-box;
+      border: 1px solid var(--grey);
+      border-radius: 50px;
+      font-family: sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text);
+      transition: linear 0.2s;
+      width: 100%;
+   }
+
+
+   .container input ::-webkit-input-placeholder {
+      color: var(--placeholder);
+      font-weight: 300;
+      font-size: 14px;
+   }
+
+   .form-control:focus {
+      box-shadow: none;
+   }
+
+   span {
+      background: var(--white);
+      z-index: 1;
+      position: relative;
+      padding: 0 10px;
+      font-size: 14px;
+   }
+   #cke_id_content[style*="width: 835px"] {
+      width: auto !important;
+   }
+
+   .cke_reset {
+      width: 100% !important;
+   }
+
+   @media only screen and (max-width: 500px) {
+      #cke_id_content[style*="width: 835px"] {
+         width: auto !important;
+      }
+
+      .cke_reset {
+         width: 100% !important;
+      }
+   }
+</style>
+{% endblock content %}
+
+
+{% block script %}
+
+<script>
+   $('#id_book_cover').on('change', function () {
+      $input = $(this);
+      if ($input.val().length > 0) {
+         fileReader = new FileReader();
+         fileReader.onload = function (data) {
+            $('.image-preview').attr('src', data.target.result);
+         }
+         fileReader.readAsDataURL($input.prop('files')[0]);
+         $('.image-button').css('display', 'none');
+         $('.image-preview').css('display', 'block');
+         $('.change-image').css('display', 'block');
+      }
+   });
+
+   $('.change-image').on('click', function () {
+      $control = $(this);
+      $('#id_book_cover').val('');
+      $preview = $('.image-preview');
+      $preview.attr('src', '');
+      $preview.css('display', 'none');
+      $control.css('display', 'none');
+      $('.image-button').css('display', 'block');
+   });
+</script>
+
+{% endblock script %}
+
+

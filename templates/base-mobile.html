@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+
+<head>
+    <title>Page Title</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoxsa6Bi3ZEuSNlEpOJv9nu_HRNqCKMUAoGxasmY1kuvbmIgKy6csAGQ2Hfolit1f4LQs&usqp=CAU"">
+
+
+    <meta charset=" utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style_mobile.css">
+    <link rel="stylesheet" href=" {% static  'css/style_mobile.css' %}">
+</head>
+
+<body>
+
+    <!-- header  -->
+    <div class="flex-container sticky-top border-bottom">
+
+        <div class="flex-item-left">
+            <a style="padding-top: 0px;" href="{% url 'home' %}" class="align-items-center text-decoration-none">
+                <img src="http://okwesinews.pythonanywhere.com/static/news/images/logo.jpg"
+                    class="rounded-pill img-logo">
+            </a>
+
+        </div>
+
+
+
+        <div class="flex-item-right">
+            <div class="">
+                <ul class="nav  m-0">
+                    {% if user.is_authenticated == False %}               
+                     <a href="{% url 'login' %}" type="button" class="btn btn-primary btn-sm rounded-pill mt-2"
+                        style="height: 29px; width: 50px; align:center; margin-right: 3px;">Login</a>
+                    
+                   <a type="button " class="btn btn-primary btn-sm rounded-pill mt-2"
+                        style="height: 29px; width: 60px; align:center;"> <a href="{% url 'signup' %}"></a> Signup</a>
+                    <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                {% else %}
+
+                    <div>
+                        <ul>
+                            <li>
+                                <a style='left: 95%;' class="nav-link" href="#" id="navbarDropdownMenuLink"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div>
+                                        <img src="https://chatscope.io/storybook/react/static/media/akane.b135c3e3.svg"
+                                            class=" img-profile rounded-circle">
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="#">Add Blog</a>
+                                    <a class="dropdown-item" href="#">Edit Profile</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                                    <div class="flex-container-img">
+                                        <h6 style="margin-left: 5px;">Too bright?</h6>
+                                        <button class="toggle " style=" width:30px;
+                                        height:20px; margin-left: 5px; top:10px;" id="toggle"></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% block content %}
+      
+    {% endblock content %}
+
+
+
+
+    <div style="padding-top:50px;">
+
+    </div>
+    <!-- buttom navigation -->
+    <div class="flex-container-down border-top  fixed-bottom">
+
+        <!-- right button group -->
+        <div class="flex-down-item-left ">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="home btn vertical" style="margin-right:10px;">
+                    <i style=" font-size: 25px; margin-right:0px;" class="bi bi-house-fill " aria-hidden="true"></i>
+                    <span style="  font-size: 12px;">Home</span>
+                </button>
+                <button class="home btn vertical">
+                    <i style=" font-size: 25px; margin:0;" class="bi bi-newspaper " aria-hidden="true"></i>
+                    <span style="  font-size: 12px;">News</span>
+                </button>
+            </div>
+        </div>
+        <!-- end right button group -->
+
+
+        <!-- middle button group -->
+        <!-- remove this button, place it in another blck content and show it based on the page opened -->
+        <div class="flex-down-item-middle">
+            <div class="btn-group " role="group" aria-label="Basic example">
+                <button class="home btn vertical" style="margin-right:10px; padding-top: 0;">
+                    <i style=" font-size: 45px; " class="bi bi-plus-circle" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <!-- end middle button group -->
+
+
+
+        <!-- left button group -->
+        <div class="flex-down-item-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="home btn vertical" style="margin-right:0px;">
+                    <i style=" font-size: 25px; " class="bi bi-book " aria-hidden="true"></i>
+                    <span style="  font-size: 12px;">Library</span>
+                </button>
+                <button class="home btn vertical">
+                    <i style=" font-size: 25px; margin:0;" class="bi bi-recycle " aria-hidden="true"></i>
+                    <span style="  font-size: 12px;">Convertor</span>
+                </button>
+            </div>
+        </div>
+        <!-- end left button group -->
+    </div>
+
+</body>
+
+<script>
+    /*
+ Inspired by Florin Pop's coding challenges, you can check them here: https://www.florin-pop.com/blog/2019/03/weekly-coding-challenge/
+ */
+
+    // UI Elements
+    const toggle = document.getElementById("toggle"),
+        circle = document.querySelector(".circle"),
+        body = document.querySelector("body");
+    let span = document.getElementById("shift");
+    let theme = "bright";
+
+    // Helper function for setting theme parameters
+    // "params" needs to be written like object {"key1": "value1", "key2": "value2", ...}
+    function setStyles(element, params) {
+        for (let i in params) {
+            element.style.setProperty(i, params[i]);
+        }
+    }
+
+    // Main logic
+    function themeChange() {
+        theme = theme === "bright" ? "dark" : "bright";
+        document.querySelector("h6").textContent = `Too ${theme}?`;
+
+        if (theme === "bright") {
+            setStyles(body, { "--background": "#FBFFF1", "--text": "#3C3744", "--accent": "#F49F6E" });
+
+            toggle.classList.remove("clicked");
+            circle.classList.remove("clicked");
+            span.textContent = `brighter and darker.`;
+
+        } else {
+            setStyles(body, { "--background": "#3C3744", "--text": "#FBFFF1", "--accent": "#C41E3D" });
+
+            toggle.classList.add("clicked");
+            circle.classList.add("clicked");
+            span.textContent = `darker and brighter.`;
+        }
+    }
+
+    // Event listener for toggle button click
+    toggle.addEventListener("click", themeChange);
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</html>
+{% if user.is_authenticated %}
+<div class="nav-item dropdown" >
+    <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+            <img src="{{user.profile.profile_picture.url}}" class="rounded-circle" width="30px"
+                height="30px" alt="" loading="lazy" />
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        {% if user.profile.id %}
+        <a class="dropdown-item" href="{% url 'show_profile' user.profile.id %}">Profile</a>
+        {% else %}
+        <a class="dropdown-item" href="{% url 'create_profile' user.id %}">Create
+            Profile</a>
+        {% endif %}
+        <a class="dropdown-item" href="#">Add Blog</a>
+        <a class="dropdown-item" href="{% url 'edit-usersettings' %}">Edit Settings</a>
+        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+
+    </div>
+</div>
+{% endif %}

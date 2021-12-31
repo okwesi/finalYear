@@ -1,0 +1,86 @@
+{% extends "base-mobile.html" %}
+
+{% block content %}
+
+<!-- Topics Menu Here -->
+<div class="scrollmenu">
+    <button type="text" class="btn" style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 15px;  ">
+            Explore |</p>
+    </button>
+
+
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+        <p class="" style="text-align: left; font-size: 10px;  ">
+            Technology</p>
+    </button>
+
+</div>
+<!-- End Topic Menu Here -->
+
+<div style="width: 97%;" class="mt-2 mb-2">
+
+    <!-- for loop here -->
+    {% for blog in blogs %}
+      
+    <a href="{% url 'blogdetail' blog.blog_Id blog.blog_title %}" style="text-decoration: none; padding:0 0 0 0">
+        <div class="flex-card-mobile">
+            <!-- left image side -->
+            <div class="flex-card-left-mobile">
+                <img src="{{blog.header_image.url}}" alt="">
+            </div>
+            <div class="flex-card-right-mobile">
+                <div class="mb-2">
+                    <button type="button" class="btn-sample flex-container-img " style="">
+                        <img src="https://chatscope.io/storybook/react/static/media/akane.b135c3e3.svg" width="20"
+                            height="25" position="fixed" class="rounded-circle m-auto ">
+                        <font face="Segoe UI" size="3px" class="mt-1">{{blog.author.username}}
+                        </font>
+                    </button>
+                </div>
+                <!-- end of left image sid -->
+                <p style="text-align: left; font-size:15px;">
+                    <b>{{blog.blog_title}}</b>
+                </p>
+                </p>
+
+                <div class="btn-group align-items-start" role="group" aria-label="Basic example">
+                    <p class="mt-1" style="text-align: left; font-size: 10px;  color:#656565; margin-right: 8px;">
+                        {{blog.blog_datePosted}}</p>
+
+                    <p class="mt-1" style="text-align: left; font-size: 10px;  color:#656565; margin-right: 8px;">
+                        {{bog.blog_readTime}} mins read</p>
+                    <button type="button" class="btn btn-secondary rounded-pill " style="height: 25px;">
+                        <p class="" style="text-align: left; font-size: 10px;  ">
+                            {{blog.blog_category}}</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </a>
+    <!-- end for  loop here -->
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

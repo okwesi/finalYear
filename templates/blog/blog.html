@@ -1,0 +1,406 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- Topics Menu Here -->
+<div class="scrollmenu  mb-2 text-center">
+    <a  href='{% url "blogs" %}' type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            All</p>
+        </a>
+    <a  href='{% url "category" "Technology" %}' type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+        </a>
+    <a  href='{% url "category" "coding" %}' type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Coding</p>
+        </a>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+    <button type="button" class="btn btn-outline-secondary rounded-pill " style="height: 40px;">
+        <p class="" style="text-align: left; font-size: 16px;  ">
+            Technology</p>
+    </button>
+
+
+</div>
+<!-- End Topic Menu Here -->
+
+<!-- Container -->
+<div class="flex-container">
+    <div class="flex-item-left">
+        <div class="container">
+            {% for blog in blogs %}
+            <article class="postcard box">
+                {% if blog.header_image.url %}
+                <a class="postcard__img_link" href="{% url 'blogdetail' blog.blog_Id %}">
+                    <img class="postcard__img" src="{{blog.header_image.url}}" alt="Image Title" />
+                </a>
+                {% else %}
+                <a class="postcard__img_link" href="{% url 'blogdetail' blog.blog_Id %}">
+                    <img class="postcard__img" src="{{blog.header_image.url}}" alt="Image Title" />
+                </a>
+                {% endif %}
+                <div class="postcard__text t-dark">
+                    <h3 class="postcard__title yellow"><a
+                            href="{% url 'blogdetail' blog.blog_Id %}">{{blog.blog_title|title}}</a>
+                    </h3>
+                    <div class="postcard__subtitle small"><a href="{% url 'blogdetail' blog.blog_Id %}">
+                            <img src="{{blog.author.profile.profile_picture.url}}" class="rounded-circle img" width="20"
+                                height='20' height="30" alt="" loading="lazy" /> {{blog.author.first_name|title}}
+                            {{blog.author.last_name|title}}
+                        </a>
+                    </div>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">
+                        {{blog.blog_description|capfirst}}
+                    </div>
+                    <ul class="postcard__tagbox">
+                        <li class="tag__item"></i> {{blog.blog_datePosted}}</li>
+                        <li class="tag__item"></i>{{blog.blog_readTime}} min read</li>
+                        <li class="tag__item play yellow">
+                            {{blog.blog_category}}
+                        </li>
+                        <li class="tag__item ml-10">
+                            <a href="{% url 'blogdetail' blog.blog_Id %}">Read More <i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </div>
+    <!-- Right Static Container -->
+    <div class="flex-item-right border-start">
+        <div class="container">
+            <div>
+                <!-- Topics -->
+                <h2 class="mb-1">
+                    <font face="Segoe UI" size="4.5px" color="#A4A1A1">Topics</font>
+                </h2>
+                <div class="row align-items-start">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Technology</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Science</button>
+
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Economics</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Sociology</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Engineering</button>
+
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Computing</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Arts</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill m-2">Politics</button>
+                    </div>
+                </div>
+            </div>
+            <!-- end of Topics -->
+        </div>
+
+
+        <hr style='width:250px; margin: auto' class="mt-3 mb-">
+        <!-- footer  here-->
+        <div class="">
+            <div class="row align-items-start">
+                <div class="col">
+                    <a href="" type="button" class="btn - rounded-pill m-1">Help</a>
+                    <button type="button" class="btn  rounded-pill m-1">About</button>
+                    <button type="button" class="btn  rounded-pill m-1">Terms</button>
+                    <button type="button" class="btn  rounded-pill m-1">Privacy</button>
+                
+                    <button type="button" class="btn - rounded-pill m-1">Contact</button>
+                    <button type="button" class="btn  rounded-pill m-1">Write</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- footer here -->
+</div>
+
+<!-- End of Right Static Container -->
+</div>
+
+</div>
+</div>
+<!-- end of Container -->
+
+
+<style>
+    div.scrollmenu {
+        overflow: auto;
+        white-space: nowrap;
+        padding: 5px 0px 5px 0px;
+        height: 60px;
+    }
+
+    /* This pen */
+    .light {
+        background: #f3f5f7;
+    }
+
+    a,
+    a:hover {
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+    #pageHeaderTitle {
+        margin: 2rem 0;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    /* Cards */
+    .postcard {
+        flex-wrap: wrap;
+        display: flex;
+        box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+        border-radius: 10px;
+        margin: 0 0 2rem 0;
+        overflow: hidden;
+        position: relative;
+        color: #000;
+        background-color: #fff;
+    }
+
+    .postcard a {
+        color: inherit;
+    }
+
+    .postcard h3,
+    .postcard .h3 {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    .postcard .small {
+        font-size: 80%;
+    }
+
+    .postcard .postcard__title {
+        font-size: 1.2rem;
+    }
+
+    .postcard .postcard__img {
+        max-height: 220px;
+        width: 100%;
+        object-fit: cover;
+        position: relative;
+    }
+
+    .postcard .postcard__img_link {
+        display: contents;
+    }
+
+    .postcard .postcard__bar {
+        width: 50px;
+        height: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background-color: #424242;
+        transition: width 0.2s ease;
+    }
+
+    .postcard .postcard__text {
+        padding: 1.5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postcard .postcard__preview-txt {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: justify;
+        height: 100%;
+    }
+
+    .postcard .postcard__tagbox {
+        display: flex;
+        flex-flow: row wrap;
+        font-size: 14px;
+        margin: 20px 0 0 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .postcard .postcard__tagbox .tag__item {
+        display: inline-block;
+        background: rgba(83, 83, 83, 0.4);
+        border-radius: 3px;
+        padding: 2.5px 10px;
+        margin: 0 5px 5px 0;
+        cursor: default;
+        user-select: none;
+        transition: background-color 0.3s;
+    }
+
+    .postcard:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        border-radius: 10px;
+    }
+
+    .postcard:hover .postcard__bar {
+        width: 100px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .flex-item-right {
+            visibility: hidden;
+            display: none;
+        }
+    }
+
+
+
+    @media screen and (min-width: 769px) {
+        div.scrollmenu {
+            visibility: hidden;
+            display: none;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-item-left {
+            padding: 10px;
+            width: 80%;
+            margin-left: 5%;
+        }
+
+        .flex-item-right {
+            /* background-color:azure; */
+            position: fixed;
+            width: 20%;
+            height: 900px;
+            left: 75%;
+            font-family: sans-serif;
+        }
+
+        .vl {
+            border-left: 1px solid #A5A5A5;
+            height: 750px;
+            position: fixed;
+            left: 69%
+        }
+
+        .authors-button {
+            width: 80%;
+        }
+
+        .postcard {
+            flex-wrap: inherit;
+        }
+
+        .postcard .postcard__title {
+            font-size: 1.2rem;
+        }
+
+        .postcard .postcard__tagbox {
+            justify-content: start;
+        }
+
+        .postcard .postcard__img {
+            max-width: 300px;
+            max-height: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .postcard .postcard__text {
+            padding: 3rem;
+            width: 100%;
+        }
+
+        .postcard .media.postcard__text:before {
+            content: "";
+            position: absolute;
+            display: block;
+            background: #18151f;
+            top: -20%;
+            height: 130%;
+            width: 55px;
+        }
+
+        .postcard:hover .postcard__img {
+            transform: scale(1.1);
+        }
+
+        .postcard:nth-child(2n+1) {
+            flex-direction: row;
+        }
+
+        .postcard:nth-child(2n+0) {
+            flex-direction: row-reverse;
+        }
+
+        .postcard:nth-child(2n+1) .postcard__text::before {
+            left: -12px !important;
+            transform: rotate(4deg);
+        }
+
+        .postcard:nth-child(2n+0) .postcard__text::before {
+            right: -12px !important;
+            transform: rotate(-4deg);
+        }
+    }
+</style>
+{% endblock content %}
+
+{% block script %}
+<script>
+    const boxes = document.querySelectorAll(".box");
+
+    window.addEventListener("scroll", checkBoxes);
+
+    checkBoxes();
+
+    function checkBoxes() {
+        const triggerBottom = (window.innerHeight / 5) * 4;
+
+        boxes.forEach((box) => {
+            const boxTop = box.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom) {
+                box.classList.add("show");
+            } else {
+                box.classList.remove("show");
+            }
+        });
+    }
+
+</script>
+{% endblock script %}

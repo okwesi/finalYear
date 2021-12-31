@@ -1,0 +1,421 @@
+{% extends "base.html" %}
+
+{% block title %}
+blog detail
+{% endblock title %}
+
+{% block content %}
+
+<style>
+  .author {
+    display: flex;
+    margin: 20px 0px 20px 0px;
+  }
+
+  .content {
+    text-align: justify;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .like-comment {
+    display: flex;
+  }
+
+  .like {
+    display: flex;
+    border: 1px solid grey;
+  }
+
+  .like span {
+    margin-top: 3px;
+    font-size: x-large;
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  .comments {
+    display: flex;
+    border: 1px solid grey;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .comments span {
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  .btn:focus {
+    box-shadow: none;
+  }
+
+  @media screen and (max-width: 769px) {
+    h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      text-align: justify;
+    }
+
+    .author img {
+      border-radius: 50%;
+      margin-right: 5px;
+      width: 25px;
+      height: 25px;
+    }
+
+    .username a {
+      font-size: 1.0rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: rgba(41, 41, 41, 1);
+      margin-right: 10px;
+
+    }
+
+    .dateread {
+      margin-right: 5px;
+      font-size: 0.9rem;
+      color: rgb(66, 64, 64);
+      margin-top: 2px;
+
+
+    }
+
+    .header-image {
+      width: 100%;
+      height: 400px;
+    }
+
+    .container {
+      width: 100%;
+      align-items: center;
+      color: rgba(41, 41, 41, 1);
+    }
+
+    .edit {
+      text-decoration: none;
+      color: white;
+      background-color: rgb(66, 64, 64);
+      width: 80px;
+      text-align: center;
+      font-size: 1.0rem;
+      height: 22px;
+      font-family: sans-serif;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 4px;
+    }
+
+    .edit:hover {
+      color: white;
+    }
+
+    .delete {
+      text-decoration: none;
+      color: white;
+      background-color: rgb(66, 64, 64);
+      ;
+      width: 80px;
+      text-align: center;
+      font-size: 1.0rem;
+      height: 22px;
+      font-family: sans-serif;
+      margin-top: 4px;
+    }
+
+    .delete:hover {
+      color: white;
+    }
+
+    .edit-delete-pc {
+      visibility: hidden;
+      display: none;
+    }
+
+    .comment-input-pc {
+      display: none;
+      visibility: hidden;
+    }
+
+  }
+
+  @media screen and (min-width: 769px) {
+    .comment-input-mobile {
+      display: none;
+      visibility: hidden;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .container {
+      width: 60%;
+      align-items: center;
+      color: rgba(41, 41, 41, 1);
+
+    }
+
+    .author img {
+      border-radius: 50%;
+      margin-right: 5px;
+      width: 30px;
+      height: 30px;
+    }
+
+    .username a {
+      font-size: larger;
+      font-weight: 500;
+      color: rgba(41, 41, 41, 1);
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .dateread {
+      margin-right: 5px;
+      font-size: 0.9rem;
+      color: rgb(66, 64, 64);
+      margin-top: 6px;
+    }
+
+    .edit {
+      text-decoration: none;
+      color: white;
+      background-color: rgb(66, 64, 64);
+      width: 80px;
+      text-align: center;
+      font-size: 1.0rem;
+      height: 22px;
+      font-family: sans-serif;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 4px;
+    }
+
+    .edit:hover {
+      color: white;
+    }
+
+    .delete {
+      text-decoration: none;
+      color: white;
+      background-color: rgb(66, 64, 64);
+      width: 80px;
+      text-align: center;
+      font-size: 1.0rem;
+      height: 22px;
+      font-family: sans-serif;
+      margin-top: 4px;
+    }
+
+    .delete:hover {
+      color: white;
+    }
+
+
+    .header-image {
+      width: 100%;
+      height: 400px;
+    }
+
+    .edit-delete-mobile {
+      visibility: hidden;
+      display: none;
+    }
+
+  }
+
+  .sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    margin: 70px 5px 0px 5px;
+
+    border-right: 1px solid gray;
+  }
+
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+
+
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {
+      padding-top: 15px;
+    }
+
+    .sidebar a {
+      font-size: 18px;
+    }
+  }
+</style>
+<div class="container main">
+
+  <h2>{{news.title}}</h2>
+  <div class="author">
+    {% if user.is_authenticated %}
+    {% if user.id == news.reporter.id %}
+    <a class="edit edit-delete-mobile rounded-pill" href="{% url 'updatenews' news.id  %}">Edit</a>
+    <a class="delete edit-delete-mobile rounded-pill" href="{% url 'deletenews' news.id  %}">Delete</a>
+    {% endif %}
+    {% endif %}
+  </div>
+  <div class="author">
+    <img src="{{news.reporter.profile.profile_picture.url}}" alt="">
+    <span class="username"><a href="">{{news.reporter.first_name|title}} {{news.reporter.last_name|title}}</a></span>
+    <span class="dateread">{{news.datePosted}}</span>
+    {% if user.is_authenticated %}
+    {% if user.id == news.reporter.id %}
+    {% if user.groups.all.0.name == 'reporters' %}
+    <a class="edit edit-delete-pc rounded-pill" href="{% url 'updatenews' news.id  %}">Edit</a>
+    <a class="delete edit-delete-pc rounded-pill" href="{% url 'deletenews' news.id  %}">Delete</a>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+  </div>
+
+
+  {% if news.header_image.url %}
+  <div>
+    <img class="header-image" src="{{news.header_image.url}}" alt="">
+  </div>
+  {% endif %}
+  <div class="content">
+    {{news.content | safe}}
+  </div>
+  <hr>
+
+
+  <div class="card mb-3 m-2 " style="max-width: 780px;align-items: center;">
+    <div class="row g-0">
+      <div class="col-md-4 mt-2 text-center">
+        <img src="{{news.reporter.profile.profile_picture.url}}" class="img-fluid"
+          style="border-radius: 50%; width: 160px; height: 160px; align-items: center;" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{news.reporter.first_name|title}} {{news.reporter.last_name|title}}</h5>
+          <div style="display: flex;" class="">
+            {% if news.reporter.profile.personal_website_link %}
+            <a href="{{news.reporter.profile.personal_website_link}}"
+              style="margin-right: 10px; font-size: x-large; text-decoration: none; color:rgb(66, 64, 64);"
+              class="fa fa-internet-explorer fa-large" aria-hidden="true"></a>
+            {% endif %}
+            {% if news.reporter.profile.whatsapp_number %}
+            <a href="https://web.whatsapp.com/send?phone={{news.reporter.profile.whatsapp_number}}&amp;text="
+              data-number="{{news.reporter.profile.whatsapp_number}}"
+              style="margin-right: 10px; font-size: x-large; text-decoration: none; color:rgb(66, 64, 64);"
+              class="fa fa-whatsapp fa-large" aria-hidden="true">
+            </a>
+            {% endif %}
+            {% if news.reporter.profile.facebook_link %}
+            <a href="{{news.reporter.profile.facebook_link}}"
+              style="margin-right: 10px; font-size: x-large; text-decoration: none; color:rgb(66, 64, 64);"
+              class="fa fa-facebook-square fa-large" aria-hidden="true"></a>
+            {% endif %}
+            {% if news.reporter.profile.twitter_link %}
+            <a href="{{news.reporter.profile.twitter_link}}"
+              style="margin-right: 10px; font-size: x-large; text-decoration: none; color:rgb(66, 64, 64);"
+              class="fa fa-twitter fa-large" aria-hidden="true"></a>
+            {% endif %}
+          </div>
+          <p class="card-text">{{news.reporter.profile.bio | truncatewords:20}} </p>
+          <a class="card-text btn" href="{% url 'show_profile' news.reporter.profile.id %}">View Profile <i
+              class="fa fa-arrow-right"></i> </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- 
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  {% if comments %}
+  Comment{{ comments.count|pluralize }} {{total_comments}}
+  <span class="badge badge-dark ml-2">{{ comments.count }}</span>
+  {% for comment in comments %}
+  <div class="mt-2">
+    <div class="card p-2">
+      <div class="col-12">
+        <strong>{{ comment.name }}</strong>
+      </div>
+      <div class="col-12">
+        <p class="m-1 mt-3">{{ comment.body }}</p>
+        <p class="text-right text-muted"><small>{{ comment.created }}</small></p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+</div>
+{% for other in others %}
+  <div class="mt-2">
+    <div class="card p-2">
+      <div class="col-12">
+        <strong>{{ other.blog_title }}</strong>
+      </div>
+      <div class="col-12">
+        <p class="m-1 mt-3">{{ other.blog_description }}</p>
+        <p class="text-right text-muted"><small>{{ other.blog_datePosted }}</small></p>
+        <p class="text-right text-muted"><small>{{ other.blog_category }}</small></p>
+      </div>
+      <a href="{% url 'blogdetail' other.blog_Id %}">read more</a>
+    </div>
+  </div>
+  {% endfor %} -->
+
+
+
+{% endblock content %}
+
+{% block script %}
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "300px";
+    document.getElementById("main").style.marginLeft = "350px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+</script>
+{% endblock script %}

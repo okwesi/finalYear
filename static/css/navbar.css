@@ -1,0 +1,60 @@
+.navbar-nav .active {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.55);
+  }
+
+  @media only screen and (max-width: 400px) {
+    .container-fluid{
+      margin-left: 0%;
+      margin-right: 0%;
+    }
+    .navbar{
+      flex-wrap: nowrap;
+    }
+    nav .img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 3rem;
+      margin-top: 0.1rem;
+  }
+  .navbar-brand img{
+    width: 90px;
+    margin-right: 0rem;
+  }
+
+   
+    
+   }
+   .btn:focus{
+     box-shadow: none;
+   }
+ 
+  
+  @media only screen and (min-width: 800px) {
+  .hide{
+    visibility:hidden;
+    display:none;
+  }  
+  .nav-item{
+      font-size: large;
+      margin-left: 10px;
+      margin-right: 10px;
+  }  }
+  
+  @media only screen and (max-width: 799px) {
+  .hide-head{
+    visibility:hidden;
+    display:none;
+  }  
+  }
+
+nav .img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+   
+}
+
+
+
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+      {% if user.id == news.reporter.id %}
+        
+         <h1>Delete {{news.title}} ........</h1> 
+
+         <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            are you sure you wannado this??? 
+            <input type="submit" value="yes Delete"
+            class="btn btn-dark">
+         </form>
+      {% else %}
+         
+         you are not supposed to be here
+         <a href="{% url 'login' %}">Login</a> OR
+         <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
+      
+   {% else %}
+       you are not supposed to be here
+        <a href="{% url 'login' %}">Login</a> OR
+        <a href="{% url 'signup' %}">Sign Up</a>
+
+   {% endif %}
+
+{% endblock content %}
+

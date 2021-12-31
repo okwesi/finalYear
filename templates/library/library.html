@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<!-- Container -->
+<div class="flex-container">
+
+    <div class="flex-item-left d-flex justify-content-center row">
+
+
+        <section class="cards-wrapper ms-5">
+            {% for book in books %}
+            <div class="card-grid-space">
+
+                <a class="card" href="{% url 'bookdetail' book.id book.title %}"
+                    style="--bg-img: url({{book.book_cover.url}})">
+                    <div>
+                        <h4>{{book.title|title}}</h4>
+                        <h5 mt-> <i class="bi bi-person-fill"></i> {{book.author|title}}</h5>
+                        <div class="date">Posted: {{book.datePosted}}</div>
+
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </section>
+
+
+    </div>
+</div>
+<!-- Right Static Container -->
+<div class="flex-item-right border-start">
+    <div class="container">
+        
+        <div>
+            <!-- Topics -->
+            
+            <div class="row align-items-center text-center">
+                <img src="https://ebookfriendly.com/wp-content/uploads/2013/06/Best-quotes-about-libraries-and-librarians-When-in-doubt-go-to-the-library-J.K.-Rowling-540x763.jpg"
+                    alt="">
+            </div>
+        </div>
+        <!-- end of Topics -->
+    </div>
+
+
+    <hr style='width:250px; margin: auto' class="mt-3 mb-">
+    <!-- footer  here-->
+    <div class="">
+        <div class="row align-items-start">
+            <div class="col">
+                <a href="" type="button" class="btn - rounded-pill m-1">Help</a>
+                <button type="button" class="btn  rounded-pill m-1">About</button>
+                <button type="button" class="btn  rounded-pill m-1">Terms</button>
+                <button type="button" class="btn  rounded-pill m-1">Privacy</button>
+
+                <button type="button" class="btn - rounded-pill m-1">Contact</button>
+                <button type="button" class="btn  rounded-pill m-1">Write</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- footer here -->
+</div>
+
+<!-- End of Right Static Container -->
+</div>
+
+</div>
+</div>
+<!-- end of Container -->
+
+
+<style>
+    /* This pen */
+
+
+
+
+    @media screen and (max-width: 600px) {
+        .flex-item-right {
+            visibility: hidden;
+            display: none;
+        }
+    }
+
+
+
+    @media screen and (min-width: 769px) {
+
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-item-left {
+            width: 80%;
+            margin-left: 5rem;
+        }
+
+        .flex-item-right {
+            /* background-color:azure; */
+            position: fixed;
+            width: 20%;
+            height: 900px;
+            left: 80%;
+            font-family: sans-serif;
+        }
+
+        .vl {
+            border-left: 1px solid #A5A5A5;
+            height: 750px;
+            position: fixed;
+            left: 69%
+        }
+
+    }
+
+    :root {
+        --color: #3c3163;
+        --transition-time: 0.5s;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+
+    a {
+        color: inherit;
+    }
+
+    .cards-wrapper {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        width: max-content;
+    }
+
+    .card {
+        font-family: 'Heebo';
+        --bg-filter-opacity: 0.4;
+        background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
+        height: 20em;
+        width: 13em;
+        font-size: 1.5em;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        /*margin: 2em;*/
+        display: flex;
+        align-items: flex-end;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 0 1em -1em black;
+        transition: all, var(--transition-time);
+        position: relative;
+        overflow: hidden;
+        border: 10px solid #ccc;
+        text-decoration: none;
+    }
+
+    .card:hover {
+        transform: rotate(0);
+    }
+
+    .card h4 {
+        margin: 18rem 0 0 0;
+        font-size: 1.0em;
+        text-align: left;
+        line-height: 0.9em;
+    }
+
+    .card h5 {
+        font-size: 0.75em;
+        font-family: 'Open Sans';
+        margin-top: 0.5em;
+        line-height: 2em;
+    }
+
+    .card .tags {
+        display: flex;
+    }
+
+    .card .tags .tag {
+        font-size: 0.75em;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 0.3rem;
+        padding: 0 0.5em;
+        margin-right: 0.5em;
+        line-height: 1.5em;
+        transition: all, var(--transition-time);
+    }
+
+    .card:hover .tags .tag {
+        background: var(--color);
+        color: white;
+    }
+
+    .card .date {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 0.75em;
+        padding: 1em;
+        line-height: 1em;
+        opacity: .8;
+    }
+
+    .card:before,
+    .card:after {
+        content: '';
+        transform: scale(0);
+        transform-origin: top left;
+        border-radius: 50%;
+        position: absolute;
+        left: -50%;
+        top: -50%;
+        z-index: -5;
+        transition: all, var(--transition-time);
+        transition-timing-function: ease-in-out;
+    }
+
+    .card:before {
+        background: #ddd;
+        width: 250%;
+        height: 250%;
+    }
+
+    .card:after {
+        background: white;
+        width: 200%;
+        height: 200%;
+    }
+
+    .card:hover {
+        color: var(--color);
+    }
+
+    .card:hover:before,
+    .card:hover:after {
+        transform: scale(1);
+    }
+
+    .card-grid-space .num {
+        font-size: 3em;
+        margin-bottom: 1.2rem;
+        margin-left: 0rem;
+    }
+
+    .info {
+        font-size: 1.2em;
+        display: flex;
+        padding: 1em 3em;
+        height: 3em;
+    }
+
+    .info img {
+        height: 3em;
+        margin-right: 0.5em;
+    }
+
+    .info h1 {
+        font-size: 1em;
+        font-weight: normal;
+    }
+
+    /* MEDIA QUERIES */
+    @media screen and (max-width: 1285px) {
+        .cards-wrapper {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .cards-wrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .info {
+            justify-content: center;
+        }
+
+        .card-grid-space .num {
+            margin-left: 0;
+            text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+
+
+        .card {
+            max-width: calc(100vw - 4rem);
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .info {
+            display: block;
+            text-align: center;
+        }
+
+        .info h1 {
+            margin: 0;
+        }
+    }
+</style>
+{% endblock content %}
+
+{% block script %}
+<script>
+    const boxes = document.querySelectorAll(".box");
+
+    window.addEventListener("scroll", checkBoxes);
+
+    checkBoxes();
+
+    function checkBoxes() {
+        const triggerBottom = (window.innerHeight / 5) * 4;
+
+        boxes.forEach((box) => {
+            const boxTop = box.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom) {
+                box.classList.add("show");
+            } else {
+                box.classList.remove("show");
+            }
+        });
+    }
+
+</script>
+{% endblock script %}

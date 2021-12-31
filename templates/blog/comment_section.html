@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Comment ........!!!!!!!</h1>
+  <form method="POST">
+     {% csrf_token %}
+     {{ form.as_p}}
+     <input type="submit" value="Comment" class="btn btn-dark">
+  </form>
+</div>
